@@ -9,17 +9,17 @@ int main(int argc, char *argv[]) {
         if (fp == NULL){ // проверка файла на существование
             printf("Enter a file name: ./a.out filename.txt\n"); // вывод сообщения об ошибке
         }
-        srand(time(NULL));
-        int l = rand()%20+20;
-        int ar[l];   
-        for (int i = 0; i < l; i++) { 
-            ar[i] = rand();
-            printf("%i\n", ar[i]);
+        srand(time(NULL)); // инициализация генератора случайных чисел
+        int l = rand()%20+20; // генерация размера массива
+        int ar[l]; // создание массива 
+        for (int i = 0; i < l; i++) { // цикл для заполнения массива случайными числами
+            ar[i] = rand(); // генерация случайного числа и запись в массив
+            printf("%i\n", ar[i]); // вывод мыссива
         }
-        fp = fopen(argv[1], "w");
-        for (int i = 0; i < l; i++) { 
-            fprintf(fp, "%i", ar[l-i-1]); // запись в файл
-            fprintf(fp, "%s", "\n"); // запись в файл
+        fp = fopen(argv[1], "w"); // открытие файла для записи
+        for (int i = 0; i < l; i++) { // цикл для записи чисел из массива в файл
+            fprintf(fp, "%i", ar[l-i-1]); // запись в файл случайного числа
+            fprintf(fp, "%s", "\n"); // запись в файл переноса строки
         }
         fclose(fp); // закрытие файла
     }
