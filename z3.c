@@ -66,8 +66,8 @@ int *checkstr(FILE *fp, char *filename) // функция для подсчет�
     strings[1] = strl;        // добавление длины строки в массив
     return strings;
 }
-void addarray(struct arr *pt, FILE *fp, char *filename)
-{                                                     // функция для переноса файла в массив
+void addarray(struct arr *pt, FILE *fp, char *filename) // функция для переноса файла в массив
+{                                                     
     char prodname[pt->size];                          // строка для чтения
     int price;                                        // переменная для чтения
     int i = 0;                                        // переменная для перебора
@@ -80,8 +80,8 @@ void addarray(struct arr *pt, FILE *fp, char *filename)
     }
     fclose(fp); // закрытие файла
 }
-void tofile(struct arr *pt, FILE *fp, char *filename)
-{                                      // функция для переноса массива в файл
+void tofile(struct arr *pt, FILE *fp, char *filename) // функция для переноса массива в файл
+{                                      
     fp = fopen(filename, "w");         // открытие файла для записи
     for (int i = 0; i < pt->size; i++) // перебор всех чисел массива
     {
