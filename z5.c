@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
 struct stack // структура данных для представления stack
 {
@@ -35,7 +36,6 @@ void push(struct stack *pt, int x) // функция для добавления
         printf("Overflow\nProgram Terminated\n"); // вывод информации о том, что stack заполнен
         exit(EXIT_FAILURE);                       // завершение программы
     }
-    printf("Inserting %d\n", x); // вывод информации о том, что элемент добавляется в stack
     pt->items[++pt->top] = x;    // добавление элемента и увеличиние индекса вершины
 }
 int peek(struct stack *pt) // функция для возврата верхнего элемента stack
@@ -56,24 +56,32 @@ int pop(struct stack *pt) // функция для извлечения верх
         printf("Underflow\nProgram Terminated\n"); // вывод информации о том, что stack пустой
         exit(EXIT_FAILURE);                        // завершение программы
     }
-    printf("Removing %d\n", peek(pt)); // вывод сообщения о извлечении элемента
     return pt->items[pt->top--];       // уменьшение размер stack на 1
 }
 int polish(struct stack *pt, FILE *fp, char *filename)
 {
     char ch; // переменная для чтения файла
     fp = fopen(filename, "r");
-    while (!feof(fp))
-    {                    // цикл для чтения файла
+    while (!feof(fp)) // цикл для чтения файла
+    { 
+        char str[10]; // строка для записи числа
         ch = fgetc(fp);  // посимвольное чтение файла
         if (isdigit(ch)) // проверка символа на число
         {
-            int dig = ch - '0'; // конвертирование символа в инт
-            push(pt, dig);      // добавление в стек
+            strncat(str, &ch, 1); // добавление char в строку
         }
         else
         {
-            if (ch == '+') // проверка символа на оператор +
+            if (ch == ' ') // проверка символа на пробел
+            {
+                if (strlen(str) > 0)
+                {
+                    int numb = atoi(str);
+                    push(pt, numb); // добавление в стек
+                    strcpy(str, "");
+                }
+            }
+            else if (ch == '+') // проверка символа на оператор +
             {
                 int first = pop(pt);      // извлечение элемента из стека
                 int second = pop(pt);     // извлечение элемента из стека
