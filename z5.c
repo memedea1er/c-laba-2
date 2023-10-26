@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
 {
     if (argc == 2) // проверка количества аргументов
     {
-        struct stack *pt = newStack(4);  // создание stack емкостью 5
+        struct stack *pt = newStack(4);  // создание stack емкостью 4
         FILE *fp;                        // создание поинтера на файл
         push(pt, 0);                     // добавление в стек 0
         polish(pt, fp, argv[1]);         // вычисление выражения
