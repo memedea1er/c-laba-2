@@ -91,8 +91,8 @@ void tofile(struct arr *pt, FILE *fp, char *filename)
 }
 int main(int argc, char *argv[])
 {
-    if (argc == 3)
-    {                                                                                  // проверка количества аргументов
+    if (argc == 3) // проверка количества аргументов
+    {
         FILE *fp;                                                                      // создание поинтера на файл
         struct arr *pt = newArray(checkstr(fp, argv[1])[0], checkstr(fp, argv[1])[1]); // создание массива емкостью strc
         addarray(pt, fp, argv[1]);                                                     // добавление элементов из файла в массива
