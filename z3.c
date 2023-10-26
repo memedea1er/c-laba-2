@@ -66,7 +66,7 @@ int *checkstr(FILE *fp, char *filename) // функция для подсчет�
     strings[1] = strl;        // добавление длины строки в массив
     return strings;
 }
-void addarray(struct arr *pt, FILE *fp, char *filename) // функция для переноса файла в массив
+void toarray(struct arr *pt, FILE *fp, char *filename) // функция для переноса файла в массив
 {                                                     
     char prodname[pt->size];                          // строка для чтения
     int price;                                        // переменная для чтения
@@ -95,13 +95,13 @@ int main(int argc, char *argv[])
     {
         FILE *fp;                                                                      // создание поинтера на файл
         struct arr *pt = newArray(checkstr(fp, argv[1])[0], checkstr(fp, argv[1])[1]); // создание массива емкостью strc
-        addarray(pt, fp, argv[1]);                                                     // добавление элементов из файла в массива
+        toarray(pt, fp, argv[1]);                                                     // добавление элементов из файла в массива
         selectionsort(pt);                                                             // сортировка элементов массива
         tofile(pt, fp, argv[2]);                                                       // вывод элементов из массива в файл
     }
     else
     {
-        puts("Enter a file name: ./a.out filename.txt\n"); // вывод сообщения об ошибке
+        puts("Enter a file name: ./a.out filename.txt ./a.out filename.txt\n"); // вывод сообщения об ошибке
     }
     return 0;
 }
