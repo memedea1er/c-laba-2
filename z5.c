@@ -55,7 +55,7 @@ void polish(struct stack *pt, FILE *fp, char *filename) // решение выр
     while (!feof(fp))          // цикл для чтения файла
     {
         ch = fgetc(fp);  // посимвольное чтение файла
-        if (isdigit(ch)) // проверка символа на число
+        if (isdigit(ch) || ch == '.') // проверка символа на число
         {
             strncat(str, &ch, 1); // добавление char в строку
         }
