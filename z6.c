@@ -103,7 +103,7 @@ char *queue_pop(struct queue *ptq) // функция для извлечения
 void polish(struct stack *pts, struct queue *ptq, char *sum) // перевод выражения в обратную польскую запись
 {
     char ch;      // переменная для чтения файла
-    char str[20]; // строка для записи числа
+    char str[30] = ""; // строка для записи числа
     char *endptr; // символ, следующий за числом после выполнения функции strtod
     for (int i = 0; i < strlen(sum); i++)
     {
@@ -186,9 +186,9 @@ char *trueform(FILE *fp, char *filename)
     int j = 0;                                                      // переменная счетчик
     for (int i = 0; i < sizeof(str); i++)                           // цикл форматирования
     {
-        if (str[i+1] == ',') // проверка ch на равенство точке
+        if (str[i + 1] == ',') // проверка ch на равенство точке
         {
-            str[i+1] = '.'; // замена ch на запятой
+            str[i + 1] = '.'; // замена ch на запятой
         }
         if ((isdigit(str[i]) || str[i] == '.') & (isdigit(str[i + 1]) || str[i + 1] == '.')) // если символ - число и после него число
         {
