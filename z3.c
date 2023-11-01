@@ -16,6 +16,10 @@ struct arr *newArray(int strc, int strl) // функция для инициал
     pt->maxlength = strl;                                      // переменная максимальной длины строки
     pt->prodnames = (char **)malloc(strc * sizeof(char *));    // выделение динамической памяти для массива элементов
     pt->prices = (int *)malloc(sizeof(int) * strc);            // выделение динамической памяти для массива элементов
+        for (int i = 0; i < strc; i++)                                // выделение динамической памяти для строк
+    {
+        pt->prodnames[i] = (char *)malloc(sizeof(char) * strl);
+    }
     return pt;
 }
 void selectionsort(struct arr *pt) // сортировка массива с помощью selection sort
@@ -74,7 +78,7 @@ void toarray(struct arr *pt, FILE *fp, char *filename) // функция для 
     fp = fopen(filename, "r");                        // открытие файла
     while (fscanf(fp, "%s %i", prodname, &price) > 0) // цикл для чтения файла
     {
-        pt->prodnames[i] = prodname; // добавление элемента
+        strcpy(pt->prodnames[i], prodname); // добавление элемента
         pt->prices[i] = price;       // добавление элемента
         i++;                         // увеличение переменной
     }
