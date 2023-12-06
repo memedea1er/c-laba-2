@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+
 #define MAX_SIZE 100
+
 char infix[MAX_SIZE]; // Инфиксное выражение
 int indexPos = 0;     // Позиция символа в инфиксном выражении
 char postfix[MAX_SIZE];// Постфиксное выражение
@@ -24,6 +26,7 @@ void handleFactor() { // Обработка скобок и цифр
     	exit(EXIT_FAILURE);
     }
 }
+
 void handleTerm() { // Обработка умножения и деления
     handleFactor(); // Обработка первого фактора
     while (infix[indexPos] == '*' || infix[indexPos] == '/') {
@@ -40,10 +43,12 @@ void handleExpr() { // Обработка сложения и вычитания
         postfix[postfixPos++] = op; // Добавление операции в постфиксное выражение
     }
 }
+
 void convertToPostfix() { // Преобразование в постфиксное выражение и вывод
     handleExpr();
     printf("Постфиксное выражение: %s\n", postfix);
 }
+
 int main() {
     printf("Введите инфиксное выражение: ");
     scanf("%s", infix);
